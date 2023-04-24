@@ -1,2 +1,2 @@
-# draftJs-repository
+# ReactDraft
 Created with CodeSandbox
