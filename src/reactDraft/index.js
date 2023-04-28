@@ -11,36 +11,29 @@ export default function Index() {
   const onEditorStateChange = function (editorState) {
     setEditorState(editorState);
     
-    
-    /*console.log("editor", editorState.getCurrentContent())
-    const blocks = convertToRaw(editorState.getCurrentContent()).blocks;*/
-    
-    // using Blocks in DraftJs for the spacing and rendering of new line
+    // using Blocks in DraftJs for different blocks for different new line
     const { blocks } = convertToRaw(editorState.getCurrentContent());
     const value = blocks.map(
       (block) => (!block.text.trim() && " ") || block.text);
-
-    console.log("value ", value, blocks);
-
+      setText(value);
+      
+      /*console.log("editor", editorState.getCurrentContent())
+      const blocks = convertToRaw(editorState.getCurrentContent()).blocks;*/
+      // console.log("value ", value, blocks);
     /*let text = blocks.reduce((acc, item) => {
       acc = acc + item.text;
       return acc;
     }, "");*/
     // let text = editorState.getCurrentContent().getPlainText("\u0001");
     // console.log("text", text)
-    setText(value);
   };
-
-  // const renderList = text
-  // .map((item) =>
-  // <div>{item}</div>
-  // );
 
   return (
     <>
       <div>{draftToHtml(convertToRaw(editorState.getCurrentContent()))}</div>
       <br />
       <div>
+        {/* mapping over all the block/new-lines to show new line  */}
         {text.map((line, ind) => (
           <div key={ind} style={{ overflow: "auto", whiteSpace:"pre" }}>{line}</div>
         ))}
